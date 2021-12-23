@@ -11,8 +11,8 @@ int main()
 
     int initialXPos = (screenWidth - (squareSide * 8)) / 2;
     int initialYPos = (screenHeight - (squareSide * 8)) / 2;
-    int x = initialXPos;
-    int y = initialYPos;
+
+    Rectangle rec = { initialXPos - 6.f, initialYPos - 6.f, squareSide * 8 + 12.f, squareSide * 8 + 12.f };
 
     Color lightColor = { 226, 184, 126, 255 };
     Color darkColor = { 143, 87, 54, 255 };
@@ -21,15 +21,16 @@ int main()
 
     Color background = { 163,78,37,255 };
 
-    Rectangle rec = { x - 6.f, y - 6.f, squareSide * 8 + 12.f, squareSide * 8 + 12.f };
-
     InitWindow(screenWidth, screenHeight, "Chess");
 
-    SetTargetFPS(60);               
+    SetTargetFPS(60);
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
+
+        int x = initialXPos;
+        int y = initialYPos;
 
         ClearBackground(background);
 
