@@ -21,6 +21,8 @@ int main()
 
     Color background = { 163,78,37,255 };
 
+    Font letterFont = GetFontDefault();
+
     InitWindow(screenWidth, screenHeight, "Chess");
 
     SetTargetFPS(60);
@@ -36,8 +38,13 @@ int main()
 
         DrawRectangleLinesEx(rec, 6, WHITE);
 
+        int a = 8;
+
         for (int i = 1; i <= numberOfSquares * 8; i++)
         {
+            std::string b;
+            b.push_back('0' + a);
+
             if (i % 2 == 0)
             {
                 DrawRectangle(x, y, squareSide, squareSide, lightColor);
@@ -46,6 +53,8 @@ int main()
             {
                 DrawRectangle(x, y, squareSide, squareSide, darkColor);
             }
+
+            DrawTextEx(GetFontDefault(), b.c_str(), { initialXPos - 30.f, y + squareSide / 2 - 12.f }, 26.f, 1.f, letterColor);
             
             if (i % 8 == 0) 
             {
@@ -53,11 +62,28 @@ int main()
                 y += squareSide;
 
                 std::swap(lightColor, darkColor);
+
+                a--;
             }
             else
             {
                 x += squareSide;
             }
+        }
+
+        x = initialXPos;
+        y += 10;
+        
+
+        for (int i = 0; i < 8; i++)
+        {
+            std::string b;
+            b.push_back('a' + i);
+            int textSize = MeasureText(b.c_str(), 26);
+
+
+            DrawTextEx(GetFontDefault(), b.c_str(), { x + squareSide / 2.f - textSize / 2.f, (float) y }, 26.f, 1.f, letterColor);
+            x += squareSide;
         }
 
         EndDrawing();
