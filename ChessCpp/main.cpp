@@ -25,6 +25,13 @@ int main()
 
     InitWindow(screenWidth, screenHeight, "Chess");
 
+    Image image = LoadImage("resources/pieces-black.png");
+    
+    Image pawnImage = ImageCopy(image);
+    ImageCrop(&pawnImage, {0, 0, 128, 128 });
+    ImageResize(&pawnImage, 80, 80);
+    Texture2D pawnTexture = LoadTextureFromImage(pawnImage);
+
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -54,6 +61,8 @@ int main()
                 DrawRectangle(x, y, squareSide, squareSide, darkColor);
             }
 
+            DrawTexture(pawnTexture, x + 3, y + 3, WHITE);
+
             DrawTextEx(GetFontDefault(), b.c_str(), { initialXPos - 30.f, y + squareSide / 2 - 12.f }, 26.f, 1.f, letterColor);
             
             if (i % 8 == 0) 
@@ -73,14 +82,12 @@ int main()
 
         x = initialXPos;
         y += 10;
-        
 
         for (int i = 0; i < 8; i++)
         {
             std::string b;
             b.push_back('a' + i);
             int textSize = MeasureText(b.c_str(), 26);
-
 
             DrawTextEx(GetFontDefault(), b.c_str(), { x + squareSide / 2.f - textSize / 2.f, (float) y }, 26.f, 1.f, letterColor);
             x += squareSide;

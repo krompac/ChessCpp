@@ -130,12 +130,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChessObject.cpp" />
+    <ClCompile Include="DrawableObject.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">${workspaceFolder}/**;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="raylib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\pieces-black.png" />
+    <Image Include="resources\pieces-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChessObject.h" />
+    <ClInclude Include="ChessPositions.h" />
+    <ClInclude Include="DrawableObject.h" />
+    <ClInclude Include="GameObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
